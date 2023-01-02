@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <script src="./script.js" defer></script>
+    <title>To-do list</title>
+</head>
+<body>
+    <header>
+        <h1>The best TO-DO list you’ll ever need</h1>
+    </header>
+    <main>
+        <section id="todo">
+            <h3>Tasks for the (day) (month)</h3>
+            <div id="input_field">
+                <input type="text" id="entry" name="entry" placeholder="Write your amazing task here...">
+                <button id="add_btn">ADD</button>
+            </div>
+            <div id="bullet_points">
+                <div>
+                    <input type="checkbox">
+                    <span>Tell my wife I love her</span>
+                </div>
+                <div>
+                    <input type="checkbox">
+                    <span>Get better at coding</span>
+                </div>
+                <div>
+                    <input type="checkbox">
+                    <span>Work out my ass off</span>
+                </div>
+                <div>
+                    <input type="checkbox">
+                    <span>Feed the cats</span>
+                </div>
+            </div>
+        </section>
+        <section id="calendar_container">
+            <h3>Calendar</h3>
+            <div class="calendar current"></div>
+            <div class="calendar next"></div>
+        </section>
+        <section id="pg_container">
+            <div id="progress_bar">
+                <div id="bar">
+
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <h6>Created by Georgijs V.</h6>
+    </footer>
+</body>
+</html>

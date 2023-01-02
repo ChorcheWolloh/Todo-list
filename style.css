@@ -1,0 +1,168 @@
+@font-face {
+    font-family: "NexaDemo Bold";
+    src: url("./fonts/._NexaDemo-Bold.ttf");
+}
+
+@font-face {
+    font-family: "NexaDemo Light";
+    src: url("./fonts/._NexaDemo-Light.ttf");
+}
+
+
+/* -------GENERAL------- */
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body {
+    background-color: #FFFBEB;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+main, header {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+header {justify-content: center;}
+
+main {width: 80%;}
+
+header h1 {
+    font-size: 48px;
+    font-family: "NexaDemo Bold", Helvetica, sans-serif;
+}
+
+footer {
+    margin-top: 20px;
+    width: 70%;
+    border-top: 5px solid rgba(37, 23, 73, .7);
+    display: flex;
+    justify-content: center;
+    flex-flow: row wrap;
+}
+
+section {
+    background-color: #FFFDF4;
+    border: 2px solid rgba(37, 23, 73, .7);
+    border-radius: 20px;
+    margin: 20px;
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+}
+
+
+/* -------TO-DO CARD------- */
+
+#todo {
+    flex: 2 1 600px;
+    display: grid;
+    grid-template-columns: 25% 1fr 20% ;
+    grid-template-rows: 10% 10% 1fr 1fr;
+}
+
+#todo h3 {
+    font-family: "NexaDemo Bold", Helvetica, sans-serif;
+    grid-column: 2;
+    grid-row: 1;
+    font-size: 32px;
+    text-align: center;
+}
+
+/* everything regarding input */
+
+#input_field {
+    grid-column: 2;
+    grid-row: 2;
+    padding-bottom: 30px;
+    border-bottom: 2px solid rgba(37, 23, 73, .7);
+    margin-bottom: 30px;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+#entry {
+    flex: 5;
+    line-height: 64px; /*so the height is 70px */
+    border-radius: 20px;
+    outline: none;
+    border: 2px solid transparent;
+    padding-left: 20px;
+    font-size: 16px;
+}
+
+#entry:focus {
+    border: 2px solid rgba(37, 23, 73, .7);
+}
+
+#add_btn {
+    flex: 1;
+}
+
+
+/* -------BULLET POINT LIST------- */
+
+#bullet_points {
+    grid-column: 2;
+    grid-row: 3;
+}
+
+#bullet_points div {
+    margin-bottom: 20px;
+}
+
+#bullet_points span {
+    font-family: "NexaDemo Light", Helvetica, sans-serif;
+    font-size: 26px;
+}
+
+
+/* -------CALENDAR------- */
+
+
+#calendar_container {
+    flex: 1 1 300px;
+}
+
+#calendar_container h3 {
+    font-size: 32px;
+    font-family: "NexaDemo Bold", Helvetica, sans-serif;
+}
+
+.calendar {
+    width: 325px;
+    height: 200px;
+    background-color: grey;
+    border: 1px solid yellow;
+    margin: 20px 0;
+}
+
+/* -------PROGRESS BAR------- */
+
+
+#pg_container {
+    flex: 3 1 1152px;
+    height: 111px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#progress_bar {
+    border: 2px solid rgba(37, 23, 73, .7);
+    width: 80%;
+    height: 40%;
+    background-color: white;
+}
+
+#bar {
+    width: 30%;
+    height: 100%;
+    background-color: rgba(37, 23, 73, .7);
+}
