@@ -1,4 +1,4 @@
-@font-face {
+/* @font-face {
     font-family: "NexaDemo Bold";
     src: url("./fonts/._NexaDemo-Bold.ttf");
 }
@@ -6,7 +6,7 @@
 @font-face {
     font-family: "NexaDemo Light";
     src: url("./fonts/._NexaDemo-Light.ttf");
-}
+} */
 
 
 /* -------GENERAL------- */
@@ -63,8 +63,8 @@ section {
 #todo {
     flex: 2 1 600px;
     display: grid;
-    grid-template-columns: 25% 1fr 20% ;
-    grid-template-rows: 10% 10% 1fr 1fr;
+    grid-template-columns: 25% 55% 20% ;
+    grid-template-rows: minmax(20%, 150px) minmax(20%, 150px) minmax(300px, 80%);
 }
 
 #todo h3 {
@@ -111,15 +111,33 @@ section {
 #bullet_points {
     grid-column: 2;
     grid-row: 3;
+    overflow-x:hidden;
+    overflow-y:auto;
+    align-self: start;
 }
 
 #bullet_points div {
     margin-bottom: 20px;
+    display: flex;
+    flex-flow: row wrap;
 }
 
 #bullet_points span {
     font-family: "NexaDemo Light", Helvetica, sans-serif;
     font-size: 26px;
+}
+
+.checked {
+    text-decoration: line-through;
+    text-decoration-thickness: 3px;
+}
+
+.bullet_checkbox {
+
+}
+
+.delete_btn {
+    margin-left: auto;
 }
 
 
