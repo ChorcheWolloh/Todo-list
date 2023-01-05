@@ -6,28 +6,59 @@ class ToDoList {
         this.input = input;
         this.bulletPoints = bulletPoints;
         this.progressBar = progressBar;
+        this.updateToDoHeading()
+        this.numberOfBulletPoints = window.localStorage.length;
     }
-    
-    bulletPointsArray = [];
-    doneBulletPoints = []
 
     addBulletPoints(){
-        // get info from the input
         const bulletPointText = this.input.value;
-        // add that info to the bulletpoint array
-        this.bulletPointsArray.push(bulletPointText);
-        // append div element with checkbox and bulletpoint text to the main bullet poin div
-        this.bulletPoints.appendChild(this.createBulletEntry(bulletPointText));
-
-        //console.log(this.bulletPointsArray);
+        if (bulletPointText === "") {
+            return;
+        } else {
+            this.sendToLocalStorage(bulletPointText);
+            this.input.value = "";
+            this.createBulletEntry(this.getFromLocalStorage(this.numberOfBulletPoints-1));
+        }
     }
 
-    createBulletEntry(input){
-        //define all elements for bulletpoint entry
+    sendToLocalStorage(value){
+        let bulletPointObj = {
+            'index' : this.numberOfBulletPoints,
+            'bulletPoint' : value,
+            'done' : false,
+            'date' : `${this.day} ${this.month}`
+        }
+
+        let storageReadyObj = JSON.stringify(bulletPointObj);
+        console.log(this.numberOfBulletPoints);
+        window.localStorage.setItem(this.numberOfBulletPoints, storageReadyObj);
+        this.numberOfBulletPoints++;
+    }
+
+    getFromLocalStorage(index){
+        return JSON.parse(window.localStorage.getItem(`${index}`));
+    }
+
+    removeFromLocalStorage(index){
+        window.localStorage.removeItem(index);
+    }
+
+    createBulletEntry(object){        
+        console.log(object);
         const entry = document.createElement('div');
         const checkbox = document.createElement("input");
         const span = document.createElement('span');
         const deleteBtn = document.createElement('input');
+
+        entry.setAttribute('id', object.index);
+
+        if (object.done === true) {
+            span.classList.add("checked");
+            checkbox.checked = true;
+        } else {
+            span.classList.remove("checked");
+            checkbox.checked = false;
+        }
 
         checkbox.setAttribute('type', 'checkbox');
         checkbox.className = "bullet_checkbox";
@@ -36,32 +67,47 @@ class ToDoList {
         deleteBtn.className = "delete_btn";
         deleteBtn.value = 'delete';
 
-        // adds event listener to the checkbox
+        span.textContent = object['bulletPoint'];
+
         checkbox.addEventListener('change', () => {
-            this.markAsDone(span);
+            this.markAsDone(span, object);
+        })
+        deleteBtn.addEventListener('click', () => {
+            // Could be done in a separate function but whateves
+            entry.remove();
+            this.removeFromLocalStorage(object.index)        
         })
 
-        span.textContent = input;
         entry.appendChild(checkbox);
         entry.appendChild(span);
         entry.appendChild(deleteBtn);
-        
-        return entry;
+
+        this.bulletPoints.appendChild(entry);
     }
 
-
-    markAsDone(target) {
-        // cross out the entry and add it to the 
+    markAsDone(target, object) {
         target.classList.toggle("checked");
-
-        this.doneBulletPoints.push(target.textContent);
-        this.bulletPointsArray.pop(target.textContent);
-        console.log("all bullet points: " + this.bulletPointsArray);
-        console.log("done bullet points: " + this.doneBulletPoints);
-
-        // doneBulletPoints array
+        if (object.done === false) {
+            object.done = true;
+            window.localStorage.setItem(object.index, JSON.stringify(object))
+            } else {
+                object.done = false;
+                window.localStorage.setItem(object.index, JSON.stringify(object))
+            } 
         }
 
+    clearLocalStorage(){
+        window.localStorage.clear();
+    }
+
+    refreshBulletPointList(){
+        for (let i = 0; i < window.localStorage.length; i++){
+            let index = window.localStorage.key(i);
+            let entry = this.getFromLocalStorage(index);
+            this.createBulletEntry(entry);
+        }
+    }
+        
     updateProgressBar(){
         // consider total amount of bulletpoints to calculate 100%
         // whenever a bulletpoint is marked as done
@@ -71,6 +117,7 @@ class ToDoList {
     updateToDoHeading(){
         // depending on the day in the calendar
         // update heading with day and month
+        this.heading.textContent = `Tasks for the ${this.day}th of ${this.month}`
     }
 
 }
@@ -95,11 +142,10 @@ class Calendar {
 }
 
 let currentDate = new Date();
-
-let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-
 let currentMonth = currentDate.getMonth();// gets in number from 0
 let currentDay = currentDate.getDate(); 
+
+let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 let todoHeading = document.querySelector("#todo_heading");
 let entry = document.querySelector("#entry");
@@ -115,6 +161,16 @@ addBtn.addEventListener('click', () => {
     toDolist.addBulletPoints();
 })
 
-// checkbox.addEventListener('change', () => {
-//     toDolist.markAsDone();
-// })
+window.onload = () => {
+    toDolist.refreshBulletPointList();
+}
+
+
+// function sends to local storage - event on btn  DONE
+// function to get from local storage, convert to usable object DONE
+// function to use value for div element
+// function that if checked sets the done to true DONE
+// function that removes element from local storage if pressed DONE
+// function that clears everything
+
+//function that runs when the page is loading - gets everything from local storage and creates bulletpoints with that with that
