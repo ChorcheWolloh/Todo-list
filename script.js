@@ -1,13 +1,15 @@
 class ToDoList {
-    constructor(day, month, heading, input, bulletPoints, progressBar){
+    constructor(day, month, heading, input, bulletPoints, progressBar, bar){
         this.day = day;
         this.month = month;
         this.heading = heading;
         this.input = input;
         this.bulletPoints = bulletPoints;
         this.progressBar = progressBar;
-        this.updateToDoHeading()
+        this.bar = bar;
+        this.updateToDoHeading();
         this.numberOfBulletPoints = window.localStorage.length;
+        this.updateProgressBar();
     }
 
     addBulletPoints(){
@@ -30,7 +32,6 @@ class ToDoList {
         }
 
         let storageReadyObj = JSON.stringify(bulletPointObj);
-        console.log(this.numberOfBulletPoints);
         window.localStorage.setItem(this.numberOfBulletPoints, storageReadyObj);
         this.numberOfBulletPoints++;
     }
@@ -44,7 +45,6 @@ class ToDoList {
     }
 
     createBulletEntry(object){        
-        console.log(object);
         const entry = document.createElement('div');
         const checkbox = document.createElement("input");
         const span = document.createElement('span');
@@ -110,6 +110,10 @@ class ToDoList {
         
     updateProgressBar(){
         // consider total amount of bulletpoints to calculate 100%
+        let fullBar = this.numberOfBulletPoints;
+        for (let i = 0; i < fullBar; i++) {
+            
+        }
         // whenever a bulletpoint is marked as done
         // fill in progress bar for the procentile amount
     }
@@ -117,7 +121,7 @@ class ToDoList {
     updateToDoHeading(){
         // depending on the day in the calendar
         // update heading with day and month
-        this.heading.textContent = `Tasks for the ${this.day}th of ${this.month}`
+        this.heading.textContent = `Tasks for the ${this.day}th of ${this.month}`;
     }
 
 }
@@ -152,10 +156,11 @@ let entry = document.querySelector("#entry");
 let addBtn = document.querySelector("#add_btn");
 let bulletPoints = document.querySelector("#bullet_points");
 let progressBar = document.querySelector("#progress_bar");
+let bar = document.querySelector("#bar");
 let checkbox = document.querySelector(".bullet_checkbox");
 
 
-let toDolist = new ToDoList(currentDay, months[currentMonth],todoHeading,entry, bulletPoints, progressBar);
+let toDolist = new ToDoList(currentDay, months[currentMonth],todoHeading,entry, bulletPoints, progressBar, bar);
 
 addBtn.addEventListener('click', () => {
     toDolist.addBulletPoints();
@@ -165,6 +170,8 @@ window.onload = () => {
     toDolist.refreshBulletPointList();
 }
 
+
+toDolist.updateProgressBar();
 
 // function sends to local storage - event on btn  DONE
 // function to get from local storage, convert to usable object DONE
