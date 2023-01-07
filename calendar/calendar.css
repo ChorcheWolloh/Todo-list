@@ -5,13 +5,13 @@ body, html {
 
 #calendar {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    grid-template-rows: repeat(8, 50px);
+    
+    grid-template-rows: 10% 10% 1fr;
     width: 325px;
-    height: 200px;
 }
 
 #weekday {
+    padding-left: 0;
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-around;
@@ -20,6 +20,10 @@ body, html {
     grid-row: 2;
     border-top: 2px solid black;
     justify-self: stretch;
+}
+
+#weekday li {
+    list-style: none;
 }
 
 #month {
@@ -31,6 +35,8 @@ body, html {
 }
 
 #days {
+    margin: 0;
+    padding-left: 0;
     grid-column: 1 / 8;
     grid-row: 3 / 9;
     display: grid;
@@ -39,10 +45,11 @@ body, html {
     align-items: center;
 }
 
-#days span {
+#days li {
     border-bottom: 2px solid transparent;
+    list-style: none;
 }
 
-#days span:hover {
+#days li:hover {
     border-bottom: 2px solid  red;
 }

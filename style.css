@@ -66,6 +66,7 @@ footer {
     display: flex;
     justify-content: center;
     flex-flow: row wrap;
+    
 }
 
 section {
@@ -146,6 +147,7 @@ section:hover {
     font-size: 16px;
     font-family: "Roboto Bold", sans-serif;
     transition: all ease 0.1s;
+    cursor: pointer;
     
     /* clip-path: polygon(0 40%, 37% 40%, 37% 0, 64% 0, 64% 39%, 100% 39%, 100% 64%, 64% 64%, 64% 100%, 36% 100%, 36% 64%, 0 64%); */
 }
@@ -176,7 +178,7 @@ section:hover {
     flex-flow: row wrap;
 }
 
-#bullet_points span {
+#bullet_points label {
     font-family: "Roboto Thin", sans-serif;
     font-size: 20px;
     margin-left: 10px;

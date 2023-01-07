@@ -47,30 +47,32 @@ class ToDoList {
     createBulletEntry(object){        
         const entry = document.createElement('div');
         const checkbox = document.createElement("input");
-        const span = document.createElement('span');
+        const label = document.createElement('label');
         const deleteBtn = document.createElement('input');
 
         entry.setAttribute('id', object.index);
 
         if (object.done === true) {
-            span.classList.add("checked");
+            label.classList.add("checked");
             checkbox.checked = true;
         } else {
-            span.classList.remove("checked");
+            label.classList.remove("checked");
             checkbox.checked = false;
         }
 
         checkbox.setAttribute('type', 'checkbox');
+        checkbox.setAttribute('id', `${object.index}-checkbox`)
         checkbox.className = "bullet_checkbox";
 
         deleteBtn.setAttribute('type', 'button');
         deleteBtn.className = "delete_btn";
         deleteBtn.value = 'delete';
 
-        span.textContent = object['bulletPoint'];
+        label.textContent = object['bulletPoint'];
+        label.setAttribute('for', `${object.index}-checkbox`);
 
         checkbox.addEventListener('change', () => {
-            this.markAsDone(span, object);
+            this.markAsDone(label, object);
         })
         deleteBtn.addEventListener('click', () => {
             // Could be done in a separate function but whateves
@@ -79,7 +81,7 @@ class ToDoList {
         })
 
         entry.appendChild(checkbox);
-        entry.appendChild(span);
+        entry.appendChild(label);
         entry.appendChild(deleteBtn);
 
         this.bulletPoints.appendChild(entry);
@@ -120,8 +122,9 @@ class ToDoList {
 
     updateToDoHeading(){
         // depending on the day in the calendar
-        // update heading with day and month
+        // if choosen day in the calendar the same as the current day:
         this.heading.textContent = `Tasks for the ${this.day}th of ${this.month}`;
+        // otherwise update heading with day and month from calendar 
     }
 
 }
@@ -135,14 +138,20 @@ class Calendar {
     choosenDay;
     choosenMonth;
 
-
     getDay(){
         // when user presses the date in the calendar
         // update choosenDay with that number
+    }
+
+    getMonth(){
         // if user chooses the next month 
         // update the choosenMonth
     }
 
+    changeMonth(){
+        // when user presses one of the side btns
+        // change month to the next or previous one
+    }
 }
 
 let currentDate = new Date();
