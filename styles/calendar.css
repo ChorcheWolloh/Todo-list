@@ -1,25 +1,6 @@
-/* Import Google font - Poppins */
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
-
-body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    background: grey;
-}
-
 .wrapper {
     width:450px; 
-    background: var(--second-bg-color);
+    background: var(--card-text-color);
     border-radius: 10px;
     align-self: start;  
 }
@@ -75,7 +56,6 @@ header .icons span:last-child {
     font-weight: 500;
 }
 
-
 .calendar ul li {
     position: relative;
     width:  calc(100% / 7);
@@ -115,3 +95,8 @@ header .icons span:last-child {
 .days li.active::before {
     background: var(--border-line-color);
 }
+
+
+/* 
+
+hover is gray not black on both days and buttons*/

@@ -3,26 +3,7 @@
 @import url("../styles/todo.css");
 @import url("../styles/progress_bar.css");
 
-/* @font-face {
-    font-family: "Roboto Bold";
-    src: url("../fon");
-}
-
-@font-face {
-    font-family: "Roboto Thin";
-    src: url("./fonts/Roboto-Thin.ttf");
-}
-
-@font-face {
-    font-family: "Roboto Regular";
-    src: url("./fonts/Roboto-Regular.ttf");
-}
-
-@font-face {
-    font-family: "Roboto Black";
-    src: url("./fonts/Roboto-Black.ttf");
-} */
-
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
 :root {
     --main-bg-color: #222831;
@@ -31,10 +12,13 @@
     --card-text-color: #EEEEEE;
 }
 
-body, html {
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
+
 
 body {
     min-height: 100vh;

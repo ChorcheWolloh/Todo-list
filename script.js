@@ -130,68 +130,72 @@ class ToDoList {
 }
 
 class Calendar {
-    constructor(currentDay, currentMonth){
-        this.currentDay = currentDay;
-        this.currentMonth = currentMonth;
+    constructor(currYear, currMonth, currDay, date, currentDate, daysTag){
+        this.currYear = currYear;
+        this.currMonth = currMonth;
+        this.date = date;
+        this.currDay = currDay;
+        this.daysTag = daysTag;
+        this.currentDate = currentDate;
+
+        // this.firstDayofMonth = new Date(this.currYear, this.currMonth, 1).getDate();
+        // this.lastDateofMonth = new Date(this.currYear, this.currMonth + 1, 0).getDate(); // getting last date of month
+        // this.lastDayofMonth = new Date(this.currYear, this.currMonth, this.lastDateofMonth).getDay(); // getting last day of month
+        // this.lastDateofLastMonth = new Date(this.currYear, this.currMonth, 0).getDate(); // getting last date of previous month
     }
 
-    choosenDay;
-    choosenMonth;
+    firstDayofMonth = new Date(currYear, currMonth, 1).getDate();
+    lastDateofMonth = new Date(currYear, currMonth + 1, 0).getDate(); // getting last date of month
+    lastDayofMonth = new Date(currYear, currMonth, this.lastDateofMonth).getDay(); // getting last day of month
+    lastDateofLastMonth = new Date(currYear, currMonth, 0).getDate(); // getting last date of previous month
+    
+    liTag = "";
+    isToday = "";
 
-    getDay(){
-        // when user presses the date in the calendar
-        // update choosenDay with that number
+    renderCalendar(){
+        this.createPrevMonthDays();
+        this.createCurrMonthDays();
+        this.createNextMonthDays();
+
+        this.currentDate.innerText = `${months[currMonth]} ${currYear}`;
+        this.daysTag.innerHTML = this.liTag;
+        console.log(this.firstDayofMonth);
     }
 
-    getMonth(){
-        // if user chooses the next month 
-        // update the choosenMonth
+    createPrevMonthDays(){
+        for (let i = this.firstDayofMonth; i > 0; i--) { // creating li of previous month last days
+            this.liTag += `<li class="inactive">${this.lastDateofLastMonth - i + 1}</li>`;
+        }
     }
 
-    changeMonth(){
-        // when user presses one of the side btns
-        // change month to the next or previous one
+    createCurrMonthDays(){
+        for (let i = 1; i <= this.lastDateofMonth; i++) { // creating li of all days of current month
+            // adding active class to li if the current day month and year matched
+            if (i === date.getDate() && currMonth === new Date().getMonth() && currYear === new Date().getFullYear()) {
+                this.isToday = "active";
+            } else {
+                this.isToday = "";
+            }
+            this.liTag += `<li class="${this.isToday}">${i}</li>`;
+        }
+    }
+
+    createNextMonthDays(){
+        for (let i = this.lastDayofMonth; i < 6; i++) { // creating li of next month first days
+            this.liTag += `<li class="inactive">${i - this.lastDayofMonth + 1}</li>`;
+        }
     }
 }
 
-// let currentDate = new Date();
-// let currentMonth = currentDate.getMonth();// gets in number from 0
-// let currentDay = currentDate.getDate(); 
+// ALL ELEMENTS AND DATE
 
-// let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-
-let todoHeading = document.querySelector("#todo_heading");
-let entry = document.querySelector("#entry");
-let addBtn = document.querySelector("#add_btn");
-let bulletPoints = document.querySelector("#bullet_points");
-let progressBar = document.querySelector("#progress_bar");
-let bar = document.querySelector("#bar");
-let checkbox = document.querySelector(".bullet_checkbox");
-
-// months[currentMonth]
-
-let toDolist = new ToDoList(5, "January",todoHeading,entry, bulletPoints, progressBar, bar);
-
-addBtn.addEventListener('click', () => {
-    toDolist.addBulletPoints();
-})
-
-window.onload = () => {
-    toDolist.refreshBulletPointList();
-}
-
-
-toDolist.updateProgressBar();
-
-// function sends to local storage - event on btn  DONE
-// function to get from local storage, convert to usable object DONE
-// function to use value for div element
-// function that if checked sets the done to true DONE
-// function that removes element from local storage if pressed DONE
-// function that clears everything
-
-//function that runs when the page is loading - gets everything from local storage and creates bulletpoints with that with that
-
+const todoHeading = document.querySelector("#todo_heading");
+const entry = document.querySelector("#entry");
+const addBtn = document.querySelector("#add_btn");
+const bulletPoints = document.querySelector("#bullet_points");
+const progressBar = document.querySelector("#progress_bar");
+const bar = document.querySelector("#bar");
+const checkbox = document.querySelector(".bullet_checkbox");
 
 const currentDate = document.querySelector(".current-date");
 const daysTag = document.querySelector(".days");
@@ -200,43 +204,28 @@ const prevNextIcon = document.querySelectorAll(".icons span");
 let date = new Date();
 let currYear = date.getFullYear();
 let currMonth = date.getMonth();
+let currDay = date.getDate();
 
 const months = ["January", "February", "March", "April", "May", "June", "July", 
                 "August", "September", "October", "November", "December"];
 
 
-function renderCalendar() {
-    let firstDayofMonth = new Date(currYear, currMonth, 1).getDate(); // getting first day of month
-    let lastDateofMonth = new Date(currYear, currMonth + 1, 0).getDate(); // getting last date of month
-    let lastDayofMonth = new Date(currYear, currMonth, lastDateofMonth).getDay(); // getting last day of month
-    let lastDateofLastMonth = new Date(currYear, currMonth, 0).getDate(); // getting last date of previous month
 
-    let liTag = "";
-    let = isToday = "";
+// CLASSES INSTANCES
 
-    for (let i = firstDayofMonth; i > 0; i--) { // creating li of previous month last days
-        liTag += `<li class="inactive">${lastDateofLastMonth - i + 1}</li>`;
-    }
+let toDolist = new ToDoList(currDay, months[currMonth],todoHeading,entry, bulletPoints, progressBar, bar);
 
-    for (let i = 1; i <= lastDateofMonth; i++) { // creating li of all days of current month
-        // adding active class to li if the current day month and year matched
-        if (i === date.getDate() && currMonth === new Date().getMonth() && currYear === new Date().getFullYear()) {
-            isToday = "active";
-        } else {
-            isToday = "";
-        }
-        liTag += `<li class="${isToday}">${i}</li>`;
-    }
+let calendar = new Calendar(currYear, currMonth, date, currDay, currentDate, daysTag);
 
-    for (let i = lastDayofMonth; i < 6; i++) { // creating li of next month first days
-        liTag += `<li class="inactive">${i - lastDayofMonth + 1}</li>`;
-    }
+// EVENT LISTENERS
 
-    currentDate.innerText = `${months[currMonth]} ${currYear}`;
-    daysTag.innerHTML = liTag;
-}
+addBtn.addEventListener('click', () => {
+    toDolist.addBulletPoints();
+})    
 
-renderCalendar();
+window.onload = () => {
+    toDolist.refreshBulletPointList();
+}    
 
 prevNextIcon.forEach(icon => {
     icon.addEventListener("click", () =>{
@@ -255,6 +244,53 @@ prevNextIcon.forEach(icon => {
             date = new Date();
 
         }
-        renderCalendar();
+        calendar.renderCalendar();
     })
 });
+
+calendar.renderCalendar();
+
+
+
+// Months multiplying after each click
+
+
+
+
+
+
+
+
+
+
+// function renderCalendar() {
+//     let firstDayofMonth = new Date(currYear, currMonth, 1).getDate(); // getting first day of month
+//     let lastDateofMonth = new Date(currYear, currMonth + 1, 0).getDate(); // getting last date of month
+//     let lastDayofMonth = new Date(currYear, currMonth, lastDateofMonth).getDay(); // getting last day of month
+//     let lastDateofLastMonth = new Date(currYear, currMonth, 0).getDate(); // getting last date of previous month
+
+//     let liTag = "";
+//     let isToday = "";
+
+//     for (let i = firstDayofMonth; i > 0; i--) { // creating li of previous month last days
+//         liTag += `<li class="inactive">${lastDateofLastMonth - i + 1}</li>`;
+//     }
+
+//     for (let i = 1; i <= lastDateofMonth; i++) { // creating li of all days of current month
+//         // adding active class to li if the current day month and year matched
+//         if (i === date.getDate() && currMonth === new Date().getMonth() && currYear === new Date().getFullYear()) {
+//             isToday = "active";
+//         } else {
+//             isToday = "";
+//         }
+//         liTag += `<li class="${isToday}">${i}</li>`;
+//     }
+
+//     for (let i = lastDayofMonth; i < 6; i++) { // creating li of next month first days
+//         liTag += `<li class="inactive">${i - lastDayofMonth + 1}</li>`;
+//     }
+
+//     currentDate.innerText = `${months[currMonth]} ${currYear}`;
+//     daysTag.innerHTML = liTag;
+// }
+

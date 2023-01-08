@@ -6,7 +6,6 @@
 }
 
 #todo h3 {
-    /* font-family: "Roboto Regular", sans-serif; */
     color: var(--second-bg-color);
     grid-column: 2;
     grid-row: 1;
@@ -28,7 +27,7 @@
 
 #entry {
     flex: 5;
-    line-height: 64px; /*so the height is 70px */
+    line-height: 64px;
     border-radius: 20px;
     outline: none;
     border: 2px solid transparent;
@@ -53,8 +52,6 @@
     font-family: "Roboto Bold", sans-serif;
     transition: all ease 0.1s;
     cursor: pointer;
-    
-    /* clip-path: polygon(0 40%, 37% 40%, 37% 0, 64% 0, 64% 39%, 100% 39%, 100% 64%, 64% 64%, 64% 100%, 36% 100%, 36% 64%, 0 64%); */
 }
 
 #add_btn:hover {
@@ -84,7 +81,6 @@
 }
 
 #bullet_points label {
-    /* font-family: "Roboto Thin", sans-serif; */
     font-size: 20px;
     margin-left: 10px;
 }
