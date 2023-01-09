@@ -191,7 +191,7 @@ class ProgressBar {
 
 const todoHeading = document.querySelector("#todo_heading");
 const entry = document.querySelector("#entry");
-const addBtn = document.querySelector("#add_btn");
+const addIcon = document.querySelector("#add_icon");
 const bulletPoints = document.querySelector("#bullet_points");
 const progressBar = document.querySelector("#progress_bar");
 const bar = document.querySelector("#bar");
@@ -229,7 +229,7 @@ let calendar = new Calendar(currentDate, daysTag); //currYear, currMonth, date, 
 
 // EVENT LISTENERS
 
-addBtn.addEventListener('click', () => {
+addIcon.addEventListener('click', () => {
     toDolist.addBulletPoints();
 })    
 
