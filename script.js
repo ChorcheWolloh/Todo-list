@@ -108,7 +108,7 @@ class ToDoList {
         }
     }
 
-    updateToDoHeading(){
+    updateToDoHeading(day, month){
         // depending on the day in the calendar
         // if choosen day in the calendar the same as the current day:
         this.heading.textContent = `Tasks for the ${this.day}th of ${this.month}`;
@@ -116,7 +116,6 @@ class ToDoList {
     }
 
 }
-
 
 class Calendar {
     constructor(currentDate, daysTag){ //currYear, currMonth, currDay, date, 
@@ -174,7 +173,6 @@ class Calendar {
     }
 }
 
-
 class ProgressBar {
     constructor(){
 
@@ -186,6 +184,7 @@ class ProgressBar {
         // fill in progress bar for the procentile amount
     }
 }
+
 
 // ALL REQUIRED ELEMENTS 
 
@@ -217,7 +216,6 @@ let firstDayofMonth = new Date(currYear, currMonth, 1).getDay();
 let lastDateofMonth = new Date(currYear, currMonth + 1, 0).getDate(); // getting last date of month
 let lastDayofMonth = new Date(currYear, currMonth, lastDateofMonth).getDay(); // getting last day of month
 let lastDateofLastMonth = new Date(currYear, currMonth, 0).getDate(); // getting last date of previous month
-
 
 
 // CLASSES INSTANCES
