@@ -98,30 +98,20 @@
     border: 1px solid var(--second-bg-color);
     background-color: var(--card-text-color);
     border-radius: 50%;
+    align-self: center;
 }
 
 .bullet_checkbox:checked {
     background-color: var(--border-line-color);
 }
 
-.delete_btn {
+.delete_cross {
     margin-left: auto;
-    appearance: none;
     outline: none;
-    border: 1px solid transparent;
-    border-radius: 20px;
-    color: var(--card-text-color);
-    background-color: var(--border-line-color);
-    font-size: 14px;
-    /* font-family: "Roboto Bold", sans-serif; */
     transition: all ease 0.1s;
 }
 
-.delete_btn:hover {
-    box-shadow: 0 3px 4px 0 rgba(57, 62, 70, .4);
-}
-
-.delete_btn:active {
-    transform: scale(1.05);
-    box-shadow: 0 4px 6px 0 rgba(57, 62, 70, .5);
+.delete_cross:hover {
+    color: var(--border-line-color);
+    transform: scale(1.3);
 }
