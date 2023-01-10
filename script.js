@@ -118,45 +118,25 @@ class ToDoList {
 }
 
 class Calendar {
-    constructor(currentDate, daysTag){ //currYear, currMonth, currDay, date, 
-        // this.currYear = currYear;
-        // this.currMonth = currMonth;
-        // this.date = date;
-        // this.currDay = currDay;
-
-
+    constructor(currentDate, daysTag){
         this.daysTag = daysTag;
         this.currentDate = currentDate;
-
-        // this.firstDayofMonth = new Date(this.currYear, this.currMonth, 1).getDate();
-        // this.lastDateofMonth = new Date(this.currYear, this.currMonth + 1, 0).getDate(); // getting last date of month
-        // this.lastDayofMonth = new Date(this.currYear, this.currMonth, this.lastDateofMonth).getDay(); // getting last day of month
-        // this.lastDateofLastMonth = new Date(this.currYear, this.currMonth, 0).getDate(); // getting last date of previous month
     }
 
-    // firstDayofMonth = new Date(currYear, currMonth, 1).getDay();
-    // lastDateofMonth = new Date(currYear, currMonth + 1, 0).getDate(); // getting last date of month
-    // lastDayofMonth = new Date(currYear, currMonth, this.lastDateofMonth).getDay(); // getting last day of month
-    // lastDateofLastMonth = new Date(currYear, currMonth, 0).getDate(); // getting last date of previous month
-    
-    
-    renderCalendar(firstDayofMonth, lastDateofMonth, lastDayofMonth, lastDateofLastMonth){
+    renderCalendar(currYear, currMonth){
+        let firstDayofMonth = new Date(currYear, currMonth, 1).getDay();
+        let lastDateofMonth = new Date(currYear, currMonth + 1, 0).getDate(); 
+        let lastDayofMonth = new Date(currYear, currMonth, lastDateofMonth).getDay(); 
+        let lastDateofLastMonth = new Date(currYear, currMonth, 0).getDate();
         let liTag = "";
-        let isToday = "";
-
-        console.log(firstDayofMonth, lastDateofMonth,lastDayofMonth, lastDateofLastMonth);
-        // Something is wrong with those variables, first day is zero, and last day of month is 2
 
         for (let i = firstDayofMonth; i > 0; i--) {
             liTag += `<li class="inactive">${lastDateofLastMonth - i + 1}</li>`;
         }
 
         for (let i = 1; i <= lastDateofMonth; i++) {
-            if (i === date.getDate() && currMonth === new Date().getMonth() && currYear === new Date().getFullYear()) {
-                isToday = "active";
-            } else {
-                isToday = "";
-            }
+            let isToday = i === date.getDate() && currMonth === new Date().getMonth() 
+                        && currYear === new Date().getFullYear() ? "active" : "";
             liTag += `<li class="${isToday}">${i}</li>`;
         }
 
@@ -212,17 +192,12 @@ const months = ["January", "February", "March", "April", "May", "June", "July",
                 "August", "September", "October", "November", "December"];
 
 
-let firstDayofMonth = new Date(currYear, currMonth, 1).getDay();
-let lastDateofMonth = new Date(currYear, currMonth + 1, 0).getDate(); // getting last date of month
-let lastDayofMonth = new Date(currYear, currMonth, lastDateofMonth).getDay(); // getting last day of month
-let lastDateofLastMonth = new Date(currYear, currMonth, 0).getDate(); // getting last date of previous month
-
 
 // CLASSES INSTANCES
 
 let toDolist = new ToDoList(currDay, months[currMonth],todoHeading,entry, bulletPoints, progressBar, bar);
 
-let calendar = new Calendar(currentDate, daysTag); //currYear, currMonth, date, currDay,
+let calendar = new Calendar(currentDate, daysTag);
 
 
 // EVENT LISTENERS
@@ -233,15 +208,15 @@ addIcon.addEventListener('click', () => {
 
 window.onload = () => {
     toDolist.refreshBulletPointList();
-    calendar.renderCalendar(firstDayofMonth, lastDateofMonth,lastDayofMonth, lastDateofLastMonth);
+    calendar.renderCalendar(currYear,currMonth);
 }    
 
 prevNextIcon.forEach(icon => {
     icon.addEventListener("click", () =>{
         if (icon.id === "prev") {
-            currMonth -= 1;
+            currMonth = currMonth - 1;
         } else {
-            currMonth += 1;
+            currMonth = currMonth + 1;
         }
         if (currMonth < 0 || currMonth > 11) { 
             date = new Date(currYear, currMonth);
@@ -250,6 +225,8 @@ prevNextIcon.forEach(icon => {
         } else {
             date = new Date();
         }
-        calendar.renderCalendar(firstDayofMonth, lastDateofMonth,lastDayofMonth, lastDateofLastMonth);
+        calendar.renderCalendar(currYear, currMonth);
     })
 });
+
+
