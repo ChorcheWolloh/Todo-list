@@ -8,7 +8,7 @@ export default class ToDoList {
         this.progressBar = progressBar;
         this.bar = bar;
         this.numberOfBulletPoints = window.localStorage.length;
-        this.updateToDoHeading();
+        this.updateToDoHeading(this.day, this.month);
     }
 
     addBulletPoints(){
@@ -111,7 +111,7 @@ export default class ToDoList {
     updateToDoHeading(day, month){
         // depending on the day in the calendar
         // if choosen day in the calendar the same as the current day:
-        this.heading.textContent = `Tasks for the ${this.day}th of ${this.month}`;
+        this.heading.textContent = `Tasks for the ${day}th of ${month}`;
         // otherwise update heading with day and month from calendar 
     }
 }

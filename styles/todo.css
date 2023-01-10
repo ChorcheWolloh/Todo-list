@@ -48,6 +48,7 @@
     text-align: center;
     transition: all ease 0.1s;
     min-width: 0;
+    cursor: pointer;
 }
 
 #add_icon:hover {
@@ -102,6 +103,7 @@
     margin-left: auto;
     outline: none;
     transition: all ease 0.1s;
+    cursor: pointer;
 }
 
 .delete_cross:hover {

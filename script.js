@@ -11,8 +11,7 @@ const addIcon = document.querySelector("#add_icon");
 const bulletPoints = document.querySelector("#bullet_points");
 const progressBar = document.querySelector("#progress_bar");
 const bar = document.querySelector("#bar");
-const checkbox = document.querySelector(".bullet_checkbox");
-
+const dayElements = document.querySelectorAll(".day");
 const daysTag = document.querySelector(".days");
 const currentDate = document.querySelector(".current-date");
 const prevNextIcon = document.querySelectorAll(".icons span");
@@ -46,7 +45,19 @@ addIcon.addEventListener('click', () => {
 window.onload = () => {
     toDolist.refreshBulletPointList();
     calendar.renderCalendar(currYear,currMonth);
+    // ISSUE: cant get all elements with class day before they are initialised
+    // this variable is here or otherwise dayElements is an empty object
+    // but now it only gets the elements for one, current month
+    // POSSIBLE SOLUTION: 
+    let dayElements = document.querySelectorAll(".day");
+    dayElements.forEach(day => {
+        day.addEventListener('click', () => {
+            console.log(day.textContent, months[currMonth])
+            toDolist.updateToDoHeading(day.textContent, months[currMonth]);
+        })
+    });
 }    
+
 
 prevNextIcon.forEach(icon => {
     icon.addEventListener("click", () =>{
@@ -65,3 +76,15 @@ prevNextIcon.forEach(icon => {
         calendar.renderCalendar(currYear, currMonth);
     })
 });
+
+
+
+// Event listener on calendar numbers clicking 
+// that triggers function updateToDoHeading() from ToDo
+// and pass as arguments results of chooseNewDate() in the Calendar
+
+// event listener {
+// todo.updateHeading(calendar.getNewDate())   
+// }
+
+
