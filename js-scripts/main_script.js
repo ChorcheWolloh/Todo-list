@@ -55,6 +55,7 @@ window.onload = () => {
         toDolist.day = day.textContent;
         toDolist.month = months[currMonth];
         toDolist.updateToDoHeading();
+        // refreshBulletPointList should probably be called here
         })
     });
 }    
@@ -85,6 +86,7 @@ prevNextIcon.forEach(icon => {
             toDolist.day = day.textContent;
             toDolist.month = months[currMonth];
             toDolist.updateToDoHeading();
+            // refreshBulletPointList should probably be called here
             })
         });
     })

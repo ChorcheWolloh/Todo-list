@@ -101,12 +101,13 @@ export default class ToDoList {
     }
 
     refreshBulletPointList(){
-        let currentBulletPoints = [];
-        let otherBulletPoints = [];
 
         for (let i = 0; i < window.localStorage.length; i++){
             let index = window.localStorage.key(i);
             let entry = this.getFromLocalStorage(index);
+            // there should be a condition that checks if current entry
+            // has the same date as this.day this.month and if so create
+            // bullet point, otherwise do nothing
             this.createBulletEntry(entry);
         }
     }
