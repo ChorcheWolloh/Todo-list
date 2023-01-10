@@ -30,8 +30,4 @@ export default class Calendar {
         this.currentDate.innerText = `${this.months[currMonth]} ${currYear}`;
         this.daysTag.innerHTML = liTag;
     }
-
-    chooseNewDate(){
-        // return the day and month of the clicked li element
-    }
 }

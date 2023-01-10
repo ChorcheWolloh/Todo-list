@@ -11,7 +11,6 @@ const addIcon = document.querySelector("#add_icon");
 const bulletPoints = document.querySelector("#bullet_points");
 const progressBar = document.querySelector("#progress_bar");
 const bar = document.querySelector("#bar");
-const dayElements = document.querySelectorAll(".day");
 const daysTag = document.querySelector(".days");
 const currentDate = document.querySelector(".current-date");
 const prevNextIcon = document.querySelectorAll(".icons span");
@@ -35,6 +34,7 @@ let toDolist = new ToDoList(currDay, months[currMonth],todoHeading,entry, bullet
 
 let calendar = new Calendar(currentDate, daysTag);
 
+let dayElements;
 
 // EVENT LISTENERS
 
@@ -45,16 +45,16 @@ addIcon.addEventListener('click', () => {
 window.onload = () => {
     toDolist.refreshBulletPointList();
     calendar.renderCalendar(currYear,currMonth);
-    // ISSUE: cant get all elements with class day before they are initialised
-    // this variable is here or otherwise dayElements is an empty object
-    // but now it only gets the elements for one, current month
-    // POSSIBLE SOLUTION: Need to somehow get dayElements after 
-    // each render of the month in the main script file
-    let dayElements = document.querySelectorAll(".day");
+    // Collects all days in one object,
+    // after that adds event listeners to every li element 
+    // that change the heading of the ToDo list accordingly
+    // it is done after each renderCalendar callback
+    dayElements = document.querySelectorAll(".day");
     dayElements.forEach(day => {
-        day.addEventListener('click', () => {
-            console.log(day.textContent, months[currMonth])
-            toDolist.updateToDoHeading(day.textContent, months[currMonth]);
+    day.addEventListener('click', () => {
+        toDolist.day = day.textContent;
+        toDolist.month = months[currMonth];
+        toDolist.updateToDoHeading();
         })
     });
 }    
@@ -75,5 +75,18 @@ prevNextIcon.forEach(icon => {
             date = new Date();
         }
         calendar.renderCalendar(currYear, currMonth);
+        // Collects all days in one object,
+        // after that adds event listeners to every li element 
+        // that change the heading of the ToDo list accordingly
+        // it is done after each renderCalendar callback
+        dayElements = document.querySelectorAll(".day");
+        dayElements.forEach(day => {
+        day.addEventListener('click', () => {
+            toDolist.day = day.textContent;
+            toDolist.month = months[currMonth];
+            toDolist.updateToDoHeading();
+            })
+        });
     })
 });
+
