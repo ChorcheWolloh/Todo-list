@@ -26,7 +26,7 @@
 }
 
 #entry {
-    flex: 3;
+    flex: 3 2 0;
     line-height: 64px;
     border-radius: 20px;
     outline: none;
@@ -35,6 +35,7 @@
     font-size: 16px;
     margin-right: 5px;
     min-width: 0;
+    overflow: hidden;
 }
 
 #entry:focus {
@@ -42,7 +43,8 @@
 }
 
 #add_icon {
-    flex: 0;
+    display: inline-block;
+    flex: 1 2 0;
     color: var(--main-bg-color);
     font-size: 80px;
     text-align: center;
