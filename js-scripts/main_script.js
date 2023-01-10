@@ -1,6 +1,6 @@
-import ToDoList from "./js-scripts/todo_list.js";
-import Calendar from "./js-scripts/calendar.js";
-import ProgressBar from "./js-scripts/progress_bar.js";
+import ToDoList from "./todo_list.js";
+import Calendar from "./calendar.js";
+import ProgressBar from "./progress_bar.js";
 
 
 // ALL REQUIRED ELEMENTS 
