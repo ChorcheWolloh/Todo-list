@@ -6,8 +6,6 @@ export default class Calendar {
         "August", "September", "October", "November", "December"];
     }
     
-    
-
     renderCalendar(currYear, currMonth){
         let firstDayofMonth = new Date(currYear, currMonth, 1).getDay();
         let lastDateofMonth = new Date(currYear, currMonth + 1, 0).getDate(); 
@@ -31,7 +29,6 @@ export default class Calendar {
 
         this.currentDate.innerText = `${this.months[currMonth]} ${currYear}`;
         this.daysTag.innerHTML = liTag;
-
     }
 
     chooseNewDate(){

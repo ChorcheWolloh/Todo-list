@@ -48,7 +48,8 @@ window.onload = () => {
     // ISSUE: cant get all elements with class day before they are initialised
     // this variable is here or otherwise dayElements is an empty object
     // but now it only gets the elements for one, current month
-    // POSSIBLE SOLUTION: 
+    // POSSIBLE SOLUTION: Need to somehow get dayElements after 
+    // each render of the month in the main script file
     let dayElements = document.querySelectorAll(".day");
     dayElements.forEach(day => {
         day.addEventListener('click', () => {
@@ -76,15 +77,3 @@ prevNextIcon.forEach(icon => {
         calendar.renderCalendar(currYear, currMonth);
     })
 });
-
-
-
-// Event listener on calendar numbers clicking 
-// that triggers function updateToDoHeading() from ToDo
-// and pass as arguments results of chooseNewDate() in the Calendar
-
-// event listener {
-// todo.updateHeading(calendar.getNewDate())   
-// }
-
-
