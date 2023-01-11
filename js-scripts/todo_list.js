@@ -18,7 +18,8 @@ export default class ToDoList {
         } else {
             this.sendToLocalStorage(bulletPointText);
             this.input.value = "";
-            this.createBulletEntry(this.getFromLocalStorage(this.numberOfBulletPoints-1));
+            //this.createBulletEntry(this.getFromLocalStorage(this.numberOfBulletPoints-1));
+            this.refreshBulletPointList();
         }
     }
 
@@ -53,13 +54,13 @@ export default class ToDoList {
         span.innerHTML = "close";
         
         checkbox.setAttribute('type', 'checkbox');
-        checkbox.setAttribute('id', `${object.index}-checkbox`)
+        checkbox.setAttribute('id', `checkbox-${object.index}`)
         checkbox.className = "bullet_checkbox";
         
         label.textContent = object['bulletPoint'];
-        label.setAttribute('for', `${object.index}-checkbox`);
+        label.setAttribute('for', `checkbox-${object.index}`);
 
-        entry.setAttribute('id', object.index);
+        entry.setAttribute('id', `bullet-${object.index}`);
 
         if (object.done === true) {
             label.classList.add("checked");
@@ -105,10 +106,20 @@ export default class ToDoList {
         for (let i = 0; i < window.localStorage.length; i++){
             let index = window.localStorage.key(i);
             let entry = this.getFromLocalStorage(index);
+            let bullet_point = document.querySelector(`#bullet-${entry.index}`);
             // there should be a condition that checks if current entry
             // has the same date as this.day this.month and if so create
             // bullet point, otherwise do nothing
-            this.createBulletEntry(entry);
+            if (entry.date === `${this.day} ${this.month}` && !(document.body.contains(bullet_point))) {
+                // console.log(`${this.day} ${this.month}`)
+                this.createBulletEntry(entry);
+            } else if (document.body.contains(bullet_point)) {
+                // console.log('Bulletpoints for another day');
+                // console.log(entry);
+                bullet_point.remove();
+            } else {
+                console.log('final else');
+            }
         }
     }
 

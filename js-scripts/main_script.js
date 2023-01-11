@@ -14,7 +14,8 @@ const bar = document.querySelector("#bar");
 const daysTag = document.querySelector(".days");
 const currentDate = document.querySelector(".current-date");
 const prevNextIcon = document.querySelectorAll(".icons span");
-
+// will be an object containing all li elements with class day
+let dayElements;
 
 // DATE VARIABLES
 
@@ -34,7 +35,6 @@ let toDolist = new ToDoList(currDay, months[currMonth],todoHeading,entry, bullet
 
 let calendar = new Calendar(currentDate, daysTag);
 
-let dayElements;
 
 // EVENT LISTENERS
 
@@ -47,7 +47,8 @@ window.onload = () => {
     calendar.renderCalendar(currYear,currMonth);
     // Collects all days in one object,
     // after that adds event listeners to every li element 
-    // that change the heading of the ToDo list accordingly
+    // that change day and month variables in toDolist which
+    // when updateToDoHeading called, changes the heading accordingly
     // it is done after each renderCalendar callback
     dayElements = document.querySelectorAll(".day");
     dayElements.forEach(day => {
@@ -56,6 +57,7 @@ window.onload = () => {
         toDolist.month = months[currMonth];
         toDolist.updateToDoHeading();
         // refreshBulletPointList should probably be called here
+        toDolist.refreshBulletPointList();
         })
     });
 }    
@@ -87,6 +89,7 @@ prevNextIcon.forEach(icon => {
             toDolist.month = months[currMonth];
             toDolist.updateToDoHeading();
             // refreshBulletPointList should probably be called here
+            toDolist.refreshBulletPointList();
             })
         });
     })
