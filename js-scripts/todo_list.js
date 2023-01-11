@@ -102,7 +102,6 @@ export default class ToDoList {
     }
 
     refreshBulletPointList(){
-
         for (let i = 0; i < window.localStorage.length; i++){
             let index = window.localStorage.key(i);
             let entry = this.getFromLocalStorage(index);

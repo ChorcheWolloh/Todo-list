@@ -54,24 +54,26 @@ window.onload = () => {
     // has the class active 
     // it is done after each renderCalendar callback
     dayElements = document.querySelectorAll(".day");
+    calendar.checkForBulletPoints(dayElements, currMonth);
     dayElements.forEach(day => {
-    day.addEventListener('click', () => {
-        if (day.classList.contains('previous')) {
-            toDolist.day = day.textContent;
-            toDolist.month = months[currMonth-1];
-        } else if (day.classList.contains('next')) {
-            toDolist.day = day.textContent;
-            toDolist.month = months[currMonth+1];
-        } else {
-            toDolist.day = day.textContent;
-            toDolist.month = months[currMonth];
-        }
-        calendar.changeActiveDay(dayElements, day); // passing in the object with all elements and current day
-        toDolist.updateToDoHeading();
-        toDolist.refreshBulletPointList();
-        })
+        day.addEventListener('click', () => {
+            // checks if li element has previous or next class and increment/decrement currMonth accordingly
+            if (day.classList.contains('previous')) {
+                toDolist.day = day.textContent;
+                toDolist.month = months[currMonth-1];
+            } else if (day.classList.contains('next')) {
+                toDolist.day = day.textContent;
+                toDolist.month = months[currMonth+1];
+            } else {
+                toDolist.day = day.textContent;
+                toDolist.month = months[currMonth];
+            }
+            calendar.changeActiveDay(dayElements, day); // passing in the object with all elements and current day
+            toDolist.updateToDoHeading();
+            toDolist.refreshBulletPointList();
+        });
     });
-}    
+}
 
 
 prevNextIcon.forEach(icon => {
@@ -90,23 +92,24 @@ prevNextIcon.forEach(icon => {
         }
         calendar.renderCalendar(currYear, currMonth);
         dayElements = document.querySelectorAll(".day");
+        calendar.checkForBulletPoints(dayElements, currMonth);
         dayElements.forEach(day => {
-        day.addEventListener('click', () => {
-            if (day.classList.contains('previous')) {
-                toDolist.day = day.textContent;
-                toDolist.month = months[currMonth-1];
-            } else if (day.classList.contains('next')) {
-                toDolist.day = day.textContent;
-                toDolist.month = months[currMonth+1];
-            } else {
-                toDolist.day = day.textContent;
-                toDolist.month = months[currMonth];
-            }
-            calendar.changeActiveDay(dayElements, day); 
-            toDolist.updateToDoHeading();
-            toDolist.refreshBulletPointList();
-            })
+            day.addEventListener('click', () => {
+                if (day.classList.contains('previous')) {
+                    toDolist.day = day.textContent;
+                    toDolist.month = months[currMonth-1];
+                } else if (day.classList.contains('next')) {
+                    toDolist.day = day.textContent;
+                    toDolist.month = months[currMonth+1];
+                } else {
+                    toDolist.day = day.textContent;
+                    toDolist.month = months[currMonth];
+                }
+                calendar.changeActiveDay(dayElements, day); 
+                toDolist.updateToDoHeading();
+                toDolist.refreshBulletPointList();
+            });
         });
-    })
+    });
 });
 

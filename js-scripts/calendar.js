@@ -43,8 +43,28 @@ export default class Calendar {
         });
     }
 
-    checkForBulletPoints() {
+    checkForBulletPoints(allDays, currMonth) {
+        // this function should check if there's tasks for all days
+        // and if so add class has-tasks to correct li items
+        // to do so, it first needs to get all tasks from local storage
+        // after which get dates from those tasks 
+        // and set li elements class accordingly
+        let allDates = [];
+        for (let i = 0; i < window.localStorage.length; i++){
+            let index = window.localStorage.key(i);
+            let entry = JSON.parse(window.localStorage.getItem(`${index}`));
+            allDates.push(entry.date);
+        }
+        let datesThatHaveTasks = allDates.filter(onlyUnique);
+        allDays.forEach(day => {
+            if (datesThatHaveTasks.includes(`${day.innerHTML} ${this.months[currMonth]}`)) {
+                day.classList.add("has-tasks");
+            }
+        });
 
+        function onlyUnique(value, index, self) {
+            return self.indexOf(value) === index;
+          }
     }
 }
 
