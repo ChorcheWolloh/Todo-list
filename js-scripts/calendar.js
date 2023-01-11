@@ -30,4 +30,19 @@ export default class Calendar {
         this.currentDate.innerText = `${this.months[currMonth]} ${currYear}`;
         this.daysTag.innerHTML = liTag;
     }
+
+    changeActiveDay(allDays, currentDay) {
+        // loops over all days in the object
+        // if any day has class active - removes it
+        // then adds class active to the pressed day
+        allDays.forEach(day => {
+            if (day.classList.contains("active")) {
+                day.classList.remove("active");
+            }
+            currentDay.classList.add("active");
+        });
+    }
 }
+
+// 1. when calendar li element is clicked - make it active, ONLY ONE active li element can be at the time
+// 2. if theres at least one task for the day - that day should have an underline under the number (add class .underline to that li element)

@@ -17,6 +17,7 @@ const prevNextIcon = document.querySelectorAll(".icons span");
 // will be an object containing all li elements with class day
 let dayElements;
 
+
 // DATE VARIABLES
 
 let date = new Date();
@@ -55,8 +56,8 @@ window.onload = () => {
     day.addEventListener('click', () => {
         toDolist.day = day.textContent;
         toDolist.month = months[currMonth];
+        calendar.changeActiveDay(dayElements, day); // passing in the object with all elements and current day
         toDolist.updateToDoHeading();
-        // refreshBulletPointList should probably be called here
         toDolist.refreshBulletPointList();
         })
     });
@@ -88,7 +89,6 @@ prevNextIcon.forEach(icon => {
             toDolist.day = day.textContent;
             toDolist.month = months[currMonth];
             toDolist.updateToDoHeading();
-            // refreshBulletPointList should probably be called here
             toDolist.refreshBulletPointList();
             })
         });
