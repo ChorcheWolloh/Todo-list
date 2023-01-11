@@ -14,7 +14,7 @@ export default class Calendar {
         let liTag = "";
 
         for (let i = firstDayofMonth; i > 0; i--) {
-            liTag += `<li class="day inactive">${lastDateofLastMonth - i + 1}</li>`;
+            liTag += `<li class="day inactive previous">${lastDateofLastMonth - i + 1}</li>`;
         }
 
         for (let i = 1; i <= lastDateofMonth; i++) {
@@ -24,7 +24,7 @@ export default class Calendar {
         }
 
         for (let i = lastDayofMonth; i < 6; i++) {
-            liTag += `<li class="day inactive">${i - lastDayofMonth + 1}</li>`;
+            liTag += `<li class="day inactive next">${i - lastDayofMonth + 1}</li>`;
         }
 
         this.currentDate.innerText = `${this.months[currMonth]} ${currYear}`;
@@ -42,7 +42,10 @@ export default class Calendar {
             currentDay.classList.add("active");
         });
     }
+
+    checkForBulletPoints() {
+
+    }
 }
 
-// 1. when calendar li element is clicked - make it active, ONLY ONE active li element can be at the time
 // 2. if theres at least one task for the day - that day should have an underline under the number (add class .underline to that li element)

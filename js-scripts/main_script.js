@@ -50,12 +50,22 @@ window.onload = () => {
     // after that adds event listeners to every li element 
     // that change day and month variables in toDolist which
     // when updateToDoHeading called, changes the heading accordingly
+    // after which changeActiveDay makes sure that only one element in the calendar
+    // has the class active 
     // it is done after each renderCalendar callback
     dayElements = document.querySelectorAll(".day");
     dayElements.forEach(day => {
     day.addEventListener('click', () => {
-        toDolist.day = day.textContent;
-        toDolist.month = months[currMonth];
+        if (day.classList.contains('previous')) {
+            toDolist.day = day.textContent;
+            toDolist.month = months[currMonth-1];
+        } else if (day.classList.contains('next')) {
+            toDolist.day = day.textContent;
+            toDolist.month = months[currMonth+1];
+        } else {
+            toDolist.day = day.textContent;
+            toDolist.month = months[currMonth];
+        }
         calendar.changeActiveDay(dayElements, day); // passing in the object with all elements and current day
         toDolist.updateToDoHeading();
         toDolist.refreshBulletPointList();
@@ -79,15 +89,20 @@ prevNextIcon.forEach(icon => {
             date = new Date();
         }
         calendar.renderCalendar(currYear, currMonth);
-        // Collects all days in one object,
-        // after that adds event listeners to every li element 
-        // that change the heading of the ToDo list accordingly
-        // it is done after each renderCalendar callback
         dayElements = document.querySelectorAll(".day");
         dayElements.forEach(day => {
         day.addEventListener('click', () => {
-            toDolist.day = day.textContent;
-            toDolist.month = months[currMonth];
+            if (day.classList.contains('previous')) {
+                toDolist.day = day.textContent;
+                toDolist.month = months[currMonth-1];
+            } else if (day.classList.contains('next')) {
+                toDolist.day = day.textContent;
+                toDolist.month = months[currMonth+1];
+            } else {
+                toDolist.day = day.textContent;
+                toDolist.month = months[currMonth];
+            }
+            calendar.changeActiveDay(dayElements, day); 
             toDolist.updateToDoHeading();
             toDolist.refreshBulletPointList();
             })
