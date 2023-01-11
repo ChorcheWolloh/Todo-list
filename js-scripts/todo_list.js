@@ -18,8 +18,8 @@ export default class ToDoList {
         } else {
             this.sendToLocalStorage(bulletPointText);
             this.input.value = "";
-            //this.createBulletEntry(this.getFromLocalStorage(this.numberOfBulletPoints-1));
-            this.refreshBulletPointList();
+            this.createBulletEntry(this.getFromLocalStorage(this.numberOfBulletPoints-1));
+            //this.refreshBulletPointList();
         }
     }
 
@@ -107,18 +107,14 @@ export default class ToDoList {
             let index = window.localStorage.key(i);
             let entry = this.getFromLocalStorage(index);
             let bullet_point = document.querySelector(`#bullet-${entry.index}`);
-            // there should be a condition that checks if current entry
-            // has the same date as this.day this.month and if so create
-            // bullet point, otherwise do nothing
+            // checks if the date of the entry equals to the day and month set in the class
+            // those this.day this.month variables are modified in calendar event listeners
+            // then checks if that element already in the DOM and if not
+            // adds the entry, otherwise removes the entry
             if (entry.date === `${this.day} ${this.month}` && !(document.body.contains(bullet_point))) {
-                // console.log(`${this.day} ${this.month}`)
                 this.createBulletEntry(entry);
             } else if (document.body.contains(bullet_point)) {
-                // console.log('Bulletpoints for another day');
-                // console.log(entry);
                 bullet_point.remove();
-            } else {
-                console.log('final else');
             }
         }
     }
