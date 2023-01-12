@@ -1,11 +1,11 @@
-.wrapper {
+.calendar-container {
     width:450px; 
     background: var(--card-text-color);
     border-radius: 10px;
     align-self: start;  
 }
 
-.wrapper header {
+.calendar-container header {
     display: flex;
     align-items: center;
     padding: 25px 30px 10px;

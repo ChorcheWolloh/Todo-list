@@ -5,17 +5,17 @@ import ProgressBar from "./progress_bar.js";
 
 // ALL REQUIRED ELEMENTS 
 
-const todoHeading = document.querySelector("#todo_heading");
+const todoHeading = document.querySelector("#todo-heading");
 const entry = document.querySelector("#entry");
-const addIcon = document.querySelector("#add_icon");
-const bulletPoints = document.querySelector("#bullet_points");
-const progressBar = document.querySelector("#progress_bar");
+const addIcon = document.querySelector("#add-icon");
+const bulletPoints = document.querySelector("#bullet-points");
+const progressBar = document.querySelector("#progress-bar");
 const bar = document.querySelector("#bar");
 const daysTag = document.querySelector(".days");
 const currentDate = document.querySelector(".current-date");
 const prevNextIcon = document.querySelectorAll(".icons span");
 // will be an object containing all li elements with class day
-const deleteSpan = document.querySelectorAll(".delete_cross");
+const deleteSpan = document.querySelectorAll(".delete-cross");
 let dayElements;
 
 

@@ -1,4 +1,4 @@
-#pg_container {
+#pg-container {
     flex: 3 1 1152px;
     height: 70px; 
     display: flex;
@@ -6,7 +6,7 @@
     align-items: center;
 }
 
-#progress_bar {
+#progress-bar {
     border: 2px solid var(--border-line-color);
     width: 80%;
     height: 40%;

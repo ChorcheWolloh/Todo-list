@@ -49,12 +49,12 @@ export default class ToDoList {
         const label = document.createElement('label');
         const span = document.createElement("span");
         
-        span.className = "delete_cross material-symbols-outlined";
+        span.className = "delete-cross material-symbols-outlined";
         span.innerHTML = "close";
         
         checkbox.setAttribute('type', 'checkbox');
         checkbox.setAttribute('id', `checkbox-${object.index}`)
-        checkbox.className = "bullet_checkbox";
+        checkbox.className = "bullet-checkbox";
         
         label.textContent = object['bulletPoint'];
         label.setAttribute('for', `checkbox-${object.index}`);
