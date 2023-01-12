@@ -68,10 +68,3 @@ export default class Calendar {
           }
     }
 }
-
-// underscoring works partily - it works on next prev icons and on load
-// if you remove tasks - no underscore
-// but ideally it needs to update when task is added or removed without
-// reloading or changing months back-forth
-
-// if you change month and then go back active day sets back to the current day

@@ -1,6 +1,5 @@
 import ToDoList from "./todo_list.js";
 import Calendar from "./calendar.js";
-import ProgressBar from "./progress_bar.js";
 
 
 // ALL REQUIRED ELEMENTS 
@@ -37,8 +36,6 @@ let toDolist = new ToDoList(currDay, months[currMonth],todoHeading,entry, bullet
 
 let calendar = new Calendar(currentDate, daysTag);
 
-let progressBarClass = new ProgressBar(progressBar);
-
 
 // EVENT LISTENERS
 
@@ -46,6 +43,7 @@ let progressBarClass = new ProgressBar(progressBar);
 window.onload = () => {
     toDolist.refreshBulletPointList();
     calendar.renderCalendar(currYear,currMonth);
+    // toDolist.updateProgressBar();
     // Collects all days in one object,
     // after that adds event listeners to every li element 
     // that change day and month variables in toDolist which
@@ -71,6 +69,7 @@ window.onload = () => {
             calendar.changeActiveDay(dayElements, day); // passing in the object with all elements and current day
             toDolist.updateToDoHeading();
             toDolist.refreshBulletPointList();
+            // toDolist.updateProgressBar();
         });
     });
 }
@@ -79,6 +78,7 @@ addIcon.addEventListener('click', () => {
     toDolist.addBulletPoints();
     dayElements = document.querySelectorAll(".day");
     calendar.checkForBulletPoints(dayElements, currMonth);
+    toDolist.updateProgressBar();
 })    
 
 prevNextIcon.forEach(icon => {
