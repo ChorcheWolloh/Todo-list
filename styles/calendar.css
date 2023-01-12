@@ -98,4 +98,6 @@ header .icons span:last-child {
 
 .days .has-tasks {
     text-decoration: underline;
+    text-decoration-thickness: 1.5px;
+    text-decoration-color: var(--main-bg-color);
 }

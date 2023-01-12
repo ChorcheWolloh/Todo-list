@@ -19,7 +19,6 @@ export default class ToDoList {
             this.sendToLocalStorage(bulletPointText);
             this.input.value = "";
             this.createBulletEntry(this.getFromLocalStorage(this.numberOfBulletPoints-1));
-            //this.refreshBulletPointList();
         }
     }
 
@@ -113,8 +112,7 @@ export default class ToDoList {
             if (entry.date === `${this.day} ${this.month}` && !(document.body.contains(bullet_point))) {
                 this.createBulletEntry(entry);
             } else if (document.body.contains(bullet_point)) {
-                console.log('test')
-                // bullet_point.remove();
+                bullet_point.remove();
             }
         }
     }

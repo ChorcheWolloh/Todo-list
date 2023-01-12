@@ -37,6 +37,8 @@ let toDolist = new ToDoList(currDay, months[currMonth],todoHeading,entry, bullet
 
 let calendar = new Calendar(currentDate, daysTag);
 
+let progressBarClass = new ProgressBar(progressBar);
+
 
 // EVENT LISTENERS
 

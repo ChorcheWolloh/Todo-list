@@ -1,11 +1,13 @@
 export default class ProgressBar {
-    constructor(){
-
+    constructor(bar){
+        this.bar = bar;
     }
 
-    updateProgressBar(){
-        // consider total amount of bulletpoints to calculate 100%
-        // whenever a bulletpoint is marked as done
-        // fill in progress bar for the procentile amount
+    updateProgressBar(allBulletPoints){
     }
 }
+
+// Progress bar should take in amount of tasks for a specific day
+// then divide that amount for equal parts
+// and increment progress bar according to done tasks
+// therefore it needs to be proced everytime a checkbox is checked
