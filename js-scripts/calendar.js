@@ -56,6 +56,7 @@ export default class Calendar {
             allDates.push(entry.date);
         }
         let datesThatHaveTasks = allDates.filter(onlyUnique);
+        
         allDays.forEach(day => {
             if (datesThatHaveTasks.includes(`${day.innerHTML} ${this.months[currMonth]}`)) {
                 day.classList.add("has-tasks");
@@ -68,4 +69,9 @@ export default class Calendar {
     }
 }
 
-// 2. if theres at least one task for the day - that day should have an underline under the number (add class .underline to that li element)
+// underscoring works partily - it works on next prev icons and on load
+// if you remove tasks - no underscore
+// but ideally it needs to update when task is added or removed without
+// reloading or changing months back-forth
+
+// if you change month and then go back active day sets back to the current day

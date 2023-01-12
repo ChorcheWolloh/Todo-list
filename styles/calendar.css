@@ -96,7 +96,6 @@ header .icons span:last-child {
     background: var(--border-line-color);
 }
 
-
 .days .has-tasks {
     text-decoration: underline;
 }

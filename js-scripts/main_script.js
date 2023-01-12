@@ -15,6 +15,7 @@ const daysTag = document.querySelector(".days");
 const currentDate = document.querySelector(".current-date");
 const prevNextIcon = document.querySelectorAll(".icons span");
 // will be an object containing all li elements with class day
+const deleteSpan = document.querySelectorAll(".delete_cross");
 let dayElements;
 
 
@@ -39,9 +40,6 @@ let calendar = new Calendar(currentDate, daysTag);
 
 // EVENT LISTENERS
 
-addIcon.addEventListener('click', () => {
-    toDolist.addBulletPoints();
-})    
 
 window.onload = () => {
     toDolist.refreshBulletPointList();
@@ -75,6 +73,11 @@ window.onload = () => {
     });
 }
 
+addIcon.addEventListener('click', () => {
+    toDolist.addBulletPoints();
+    dayElements = document.querySelectorAll(".day");
+    calendar.checkForBulletPoints(dayElements, currMonth);
+})    
 
 prevNextIcon.forEach(icon => {
     icon.addEventListener("click", () =>{
@@ -112,4 +115,3 @@ prevNextIcon.forEach(icon => {
         });
     });
 });
-

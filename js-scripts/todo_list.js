@@ -113,7 +113,8 @@ export default class ToDoList {
             if (entry.date === `${this.day} ${this.month}` && !(document.body.contains(bullet_point))) {
                 this.createBulletEntry(entry);
             } else if (document.body.contains(bullet_point)) {
-                bullet_point.remove();
+                console.log('test')
+                // bullet_point.remove();
             }
         }
     }
